@@ -1,0 +1,9 @@
+@font-face {
+    font-family: alimama;
+    src: url('./AlimamaDaoLiTi.woff2');
+}
+
+.hello { 
+    color:red;
+    font-family: alimama;
+}
