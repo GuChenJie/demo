@@ -1,35 +1,29 @@
 const path = require("path");
-
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
-  entry: "./src/index.js",
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
+  // entry: "./src/index.js",
+  mode: "development",
+  entry: {
+    index: "./src/index.js",
+    print: "./src/print.js",
   },
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.(png|jepg|jpg|gif|svg)$/i,
-        // todo
-        type: "asset/resource",
-      },
-      {
-        test: /\.(woff|woff2|eto|ttf|otf)$/i,
-        // todo
-        type: "asset/resource",
-      },
-      {
-        test: /\.(csv|tsv)$/i,
-        use: ["csv-loader"],
-      },
-      {
-        test: /\.xml$/i,
-        use: ["xml-loader"],
-      },
-    ],
+  // devtool: "inline-source-map",
+  output: {
+    // filename: "bundle.js",
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true,
+    publicPath: "./",
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "dd",
+    }),
+  ],
+  devServer: {
+    static: "./dist",
+  },
+  optimization: {
+    runtimeChunk: "single",
   },
 };
